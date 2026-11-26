@@ -11,6 +11,12 @@ Jupiter 的个人主页 —— 嵌入式软件工程师。
 > 所以它现在是**项目页**（地址带 `/jupiter.github.io/` 前缀），不是 `https://jupiter1028.github.io/` 根域名。
 > 想要根域名的话见下方「换成根域名」。
 
+## 预览
+
+![主页预览（桌面端）](docs/preview-desktop.png)
+
+移动端预览见 [`docs/preview-mobile.png`](docs/preview-mobile.png)。
+
 ---
 
 ## 本地预览
