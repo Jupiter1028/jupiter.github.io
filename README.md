@@ -5,7 +5,11 @@ Jupiter 的个人主页 —— 嵌入式软件工程师。
 纯静态站点：手写 HTML / CSS / JavaScript，**没有构建步骤、没有 npm 依赖、没有外部字体请求**。
 克隆下来双击 `index.html` 就能看，推到 GitHub 就能上线。
 
-线上地址：<https://jupiter1028.github.io/>
+线上地址：<https://jupiter1028.github.io/jupiter.github.io/>
+
+> 注意：GitHub 用户名是 `Jupiter1028`，而这个仓库叫 `jupiter.github.io`，两者不一致，
+> 所以它现在是**项目页**（地址带 `/jupiter.github.io/` 前缀），不是 `https://jupiter1028.github.io/` 根域名。
+> 想要根域名的话见下方「换成根域名」。
 
 ---
 
@@ -80,7 +84,7 @@ python -m http.server 8000
 仓库自带 `.github/workflows/deploy.yml`，推送到 `main` 后会自动发布：
 
 1. 打开仓库 **Actions** 标签，等 `Deploy to GitHub Pages` 跑完（约 1 分钟）
-2. 访问 <https://jupiter1028.github.io/>
+2. 访问 <https://jupiter1028.github.io/jupiter.github.io/>
 
 首次运行时 workflow 会尝试自动开启仓库的 Pages。如果这一步因为权限被跳过，
 手动开一次即可（只需一次）：
@@ -96,6 +100,19 @@ git add -A
 git commit -m "update: 更新项目经历"
 git push
 ```
+
+### 换成根域名
+
+想让地址变成 `https://jupiter1028.github.io/`：
+
+1. 仓库 **Settings → General → Rename**，把仓库名改成 `Jupiter1028.github.io`（和用户名一致）
+2. Pages 配置会跟着迁移，之后地址就是根域名
+3. 把 `index.html` 里的 `canonical`、`og:url`、`og:image`、`twitter:image`、JSON-LD 的 `url`，
+   以及 `sitemap.xml`、`robots.txt` 里的绝对地址，从 `/jupiter.github.io/...` 改成根地址
+4. 提交推送即可
+
+> 项目页位于子路径时，`robots.txt` 不会被搜索引擎读取（它只读根域名的 `/robots.txt`），
+> 换成根域名后这份文件就会生效。
 
 ### 绑定自定义域名（可选）
 

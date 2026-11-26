@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://jupiter1028.github.io/sitemap.xml
+Sitemap: https://jupiter1028.github.io/jupiter.github.io/sitemap.xml
