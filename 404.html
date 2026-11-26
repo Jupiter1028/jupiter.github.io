@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>404 · 信号丢失 — Jupiter</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#06090e">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<style>
+  :root {
+    --bg: #06090e;
+    --text: #e8eef5;
+    --text-2: #a4b1c1;
+    --text-3: #7b8898;
+    --line: rgba(255,255,255,.09);
+    --accent: #4ff0b7;
+    --mono: "JetBrains Mono", "Cascadia Code", Consolas, monospace;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    padding: 32px;
+    background:
+      radial-gradient(600px 400px at 80% 10%, rgba(79,240,183,.12), transparent 70%),
+      radial-gradient(500px 340px at 10% 90%, rgba(120,201,255,.08), transparent 70%),
+      var(--bg);
+    color: var(--text);
+    font-family: -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  }
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(to right, var(--line) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--line) 1px, transparent 1px);
+    background-size: 72px 72px;
+    opacity: .3;
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, #000, transparent 75%);
+    pointer-events: none;
+  }
+  main {
+    position: relative;
+    width: min(560px, 100%);
+    padding: clamp(28px, 5vw, 44px);
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    background: linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.012));
+  }
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: .18em;
+    color: var(--accent);
+  }
+  .tag i {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 10px var(--accent);
+  }
+  .code {
+    margin: 18px 0 0;
+    font-family: var(--mono);
+    font-size: clamp(64px, 14vw, 104px);
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -.04em;
+    color: transparent;
+    background: linear-gradient(100deg, #4ff0b7, #78c9ff);
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
+  h1 {
+    margin: 10px 0 0;
+    font-size: clamp(20px, 3vw, 26px);
+    letter-spacing: -.02em;
+  }
+  p {
+    margin: 12px 0 0;
+    font-size: 14.5px;
+    line-height: 1.85;
+    color: var(--text-2);
+  }
+  code {
+    font-family: var(--mono);
+    font-size: .9em;
+    padding: 2px 6px;
+    border-radius: 5px;
+    background: rgba(79,240,183,.1);
+    color: var(--accent);
+  }
+  a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 26px;
+    padding: 12px 20px;
+    border-radius: 10px;
+    background: var(--accent);
+    color: #04241a;
+    font-size: 14.5px;
+    font-weight: 600;
+    text-decoration: none;
+  }
+  a:hover { filter: brightness(1.07); }
+  .foot {
+    margin-top: 26px;
+    padding-top: 18px;
+    border-top: 1px dashed var(--line);
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-3);
+  }
+</style>
+</head>
+<body>
+<main>
+  <p class="tag"><i></i>ERROR 404 · SIGNAL LOST</p>
+  <p class="code">404</p>
+  <h1>这个地址上没有设备响应。</h1>
+  <p>请求的页面可能被移动或删除了。<code>ping</code> 一下首页，应该还能连上。</p>
+  <a href="/">← 回到首页</a>
+  <p class="foot">JUPITER · EMBEDDED ENGINEER</p>
+</main>
+</body>
+</html>
