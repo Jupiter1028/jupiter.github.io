@@ -63,7 +63,7 @@
     });
 
     nav.addEventListener('click', function (event) {
-      if (event.target.closest('a')) closeMenu();
+      if (event.target.closest('a') || event.target.closest('[data-open-contact]')) closeMenu();
     });
 
     doc.addEventListener('keydown', function (event) {
@@ -287,8 +287,7 @@
     sections.forEach(function (section) { sectionObserver.observe(section); });
   }
 
-  /* ---------- 9. 复制邮箱 ---------- */
-  var copyBtn = doc.getElementById('copyMail');
+  /* ---------- 9. 复制到剪贴板 ---------- */
   var toast = doc.getElementById('toast');
   var toastTimer = null;
 
@@ -316,22 +315,23 @@
     return ok;
   }
 
-  if (copyBtn) {
-    copyBtn.addEventListener('click', function () {
-      var mail = copyBtn.dataset.mail;
-      if (!mail) return;
-      var done = function () { showToast('邮箱已复制：' + mail); };
-      var fail = function () { showToast('复制失败，邮箱：' + mail); };
+  [].forEach.call(doc.querySelectorAll('[data-copy]'), function (btn) {
+    btn.addEventListener('click', function () {
+      var value = btn.getAttribute('data-copy');
+      if (!value) return;
+      var label = btn.getAttribute('data-copy-label') || '内容';
+      var done = function () { showToast(label + '已复制：' + value); };
+      var fail = function () { showToast('复制失败，' + label + '：' + value); };
 
       if (navigator.clipboard && window.isSecureContext) {
-        navigator.clipboard.writeText(mail).then(done, function () {
-          fallbackCopy(mail) ? done() : fail();
+        navigator.clipboard.writeText(value).then(done, function () {
+          fallbackCopy(value) ? done() : fail();
         });
       } else {
-        fallbackCopy(mail) ? done() : fail();
+        fallbackCopy(value) ? done() : fail();
       }
     });
-  }
+  });
 
   /* ---------- 10. 年份 ---------- */
   var yearEl = doc.getElementById('year');
@@ -359,6 +359,90 @@
 
     hero.addEventListener('pointerleave', function () {
       stage.style.transform = 'translate3d(0,0,0)';
+    });
+  }
+
+  /* ---------- 12. 联系面板（微信 / 邮件） ---------- */
+  var contactModal = doc.getElementById('contactModal');
+  var contactDialog = contactModal ? contactModal.querySelector('.contact-modal__dialog') : null;
+  var contactOpeners = [].slice.call(doc.querySelectorAll('[data-open-contact]'));
+  var contactLastFocus = null;
+  var contactCloseTimer = null;
+
+  function openContact() {
+    if (!contactModal) return;
+    contactLastFocus = doc.activeElement;
+    if (contactCloseTimer) {
+      clearTimeout(contactCloseTimer);
+      contactCloseTimer = null;
+    }
+    contactModal.hidden = false;
+    doc.body.classList.add('is-locked');
+
+    var gutter = window.innerWidth - doc.documentElement.clientWidth;
+    if (gutter > 0) doc.body.style.paddingRight = gutter + 'px';
+
+    requestAnimationFrame(function () {
+      contactModal.classList.add('is-open');
+      if (contactDialog) contactDialog.focus({ preventScroll: true });
+    });
+  }
+
+  function closeContact() {
+    if (!contactModal || contactModal.hidden) return;
+    contactModal.classList.remove('is-open');
+    doc.body.classList.remove('is-locked');
+    doc.body.style.paddingRight = '';
+    contactCloseTimer = setTimeout(function () {
+      contactModal.hidden = true;
+    }, prefersReduced ? 0 : 240);
+    if (contactLastFocus && contactLastFocus.focus) {
+      contactLastFocus.focus({ preventScroll: true });
+    }
+  }
+
+  contactOpeners.forEach(function (btn) {
+    btn.addEventListener('click', openContact);
+  });
+
+  if (contactModal) {
+    [].forEach.call(contactModal.querySelectorAll('[data-close-contact]'), function (el) {
+      el.addEventListener('click', closeContact);
+    });
+
+    doc.addEventListener('keydown', function (event) {
+      if (contactModal.hidden) return;
+
+      if (event.key === 'Escape') {
+        event.preventDefault();
+        closeContact();
+        return;
+      }
+      if (event.key !== 'Tab' || !contactDialog) return;
+
+      var focusables = [].filter.call(
+        contactDialog.querySelectorAll('a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'),
+        function (el) { return el.offsetParent !== null; }
+      );
+      if (!focusables.length) return;
+
+      var first = focusables[0];
+      var last = focusables[focusables.length - 1];
+      if (event.shiftKey && doc.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && doc.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    });
+  }
+
+  var wechatApp = doc.getElementById('wechatApp');
+  if (wechatApp) {
+    wechatApp.addEventListener('click', function () {
+      var mobile = /Android|iPhone|iPad|iPod|HarmonyOS|Mobile/i.test(navigator.userAgent);
+      showToast(mobile ? '正在唤起微信…' : '已尝试唤起微信；没反应就用二维码或邮件');
     });
   }
 })();
