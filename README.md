@@ -15,7 +15,7 @@ Jupiter 的个人主页 —— 嵌入式软件工程师。
 
 ![主页预览（桌面端）](docs/preview-desktop.png)
 
-移动端预览见 [`docs/preview-mobile.png`](docs/preview-mobile.png)。
+移动端预览见 [`docs/preview-mobile.png`](docs/preview-mobile.png)，「聊一聊」面板见 [`docs/preview-contact.png`](docs/preview-contact.png)。
 
 ---
 
