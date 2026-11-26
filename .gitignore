@@ -1,3 +1,8 @@
 .preview/
 .DS_Store
 Thumbs.db
+
+# 本地工作区文件（DSH 上下文与原始素材，不进仓库、不发布）
+AGENTS.md
+交接说明.md
+原始素材/
