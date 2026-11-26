@@ -15,7 +15,7 @@ Jupiter 的个人主页 —— 嵌入式软件工程师。
 
 ![主页预览（桌面端）](docs/preview-desktop.png)
 
-移动端预览见 [`docs/preview-mobile.png`](docs/preview-mobile.png)，「聊一聊」面板见 [`docs/preview-contact.png`](docs/preview-contact.png)。
+移动端预览见 [`docs/preview-mobile.png`](docs/preview-mobile.png)，项目卡片见 [`docs/preview-projects.png`](docs/preview-projects.png)，「聊一聊」面板见 [`docs/preview-contact.png`](docs/preview-contact.png)。
 
 ---
 
@@ -34,15 +34,19 @@ python -m http.server 8000
 
 ```
 .
-├── index.html              # 单页主体：导航 / Hero / 关于 / 技术栈 / 项目 / 经历 / 联系
+├── index.html              # 单页主体：导航 / Hero / 关于 / 技术栈 / 项目 / 联系
 ├── 404.html                # GitHub Pages 自定义 404
 ├── assets/
 │   ├── css/style.css       # 设计令牌 + 全部样式（暗/亮双主题、响应式、动效）
 │   ├── js/main.js          # 主题记忆、滚动显现、数字滚动、打字机、复制邮箱
 │   └── img/
 │       ├── favicon.svg     # 站点图标
-│       ├── wechat-qr.png   # 微信二维码（768×768，替换时保持同名）
-│       └── og-cover.png    # 社交分享封面（1200×630）
+│       ├── wechat-qr.png   # 微信二维码（900×900，替换时保持同名）
+│       ├── og-cover.png    # 社交分享封面（1200×630）
+│       └── projects/       # 项目配图
+│           ├── h2d-ib-top.webp
+│           ├── h2d-ib-bottom.webp
+│           └── h2-pcb.webp
 ├── robots.txt
 ├── sitemap.xml
 ├── .nojekyll               # 让 GitHub Pages 跳过 Jekyll 处理
@@ -53,7 +57,7 @@ python -m http.server 8000
 ## 改成你自己的内容
 
 站内文案都是直接写在 `index.html` 里的，按区块搜关键字即可定位。
-**下面这些是示例内容，请务必替换成你的真实信息**（尤其是经历和项目，别直接上线）。
+**下面这些是示例内容，请务必替换成你的真实信息**（尤其是项目和技能，别直接上线）。
 
 | 位置 | 需要改什么 |
 | --- | --- |
@@ -63,8 +67,7 @@ python -m http.server 8000
 | `.stats` | 4 个数字：年限、项目数、驱动数、休眠电流 |
 | `#about` | 自我介绍三段、3 条工作原则、`最近在折腾` |
 | `#skills` | 6 个技能卡片里的标签（绿色 `.chip--core` 表示最熟的） |
-| `#work` | 4 个项目：标题、描述、3 个指标、标签、仓库链接 |
-| `#experience` | 3 段经历：时间、职位、公司、成果条目、右侧技术标签 |
+| `#work` | 6 个项目：标题、描述、3 个指标、标签、配图与图片链接 |
 | `#contact` | 邮箱、GitHub、坐标、状态；`.contact__facts` 里的资料；微信卡片里的文案 |
 | 页脚 | 版权年份（JS 会自动更新） |
 
@@ -86,7 +89,18 @@ python -m http.server 8000
 默认使用系统字体（Inter / PingFang SC / Microsoft YaHei），不请求外链。
 想用自定义字体，把字体文件放进 `assets/fonts/`，在 `style.css` 里加 `@font-face` 并改 `--font-sans` 即可。
 
-### 微信二维码 / 添加链接
+### 换项目配图
+
+带图的项目卡片用的是 `.project--media` 结构，图片放 `assets/img/projects/`：
+
+1. 图片存成 WebP（建议长边 1200px、质量 80，单张 300 KB 以内）
+2. 卡片里两处要改：`<img src="...">` 和外面 `<a class="project__media" href="...">`
+3. 图片按 1:1 卡片等比缩放（`object-fit: contain`），竖版、横版都不会裁切，四周留黑底
+
+> 板级 Layout 图通常又大又是 PNG，直接放上去会拖慢页面。
+> 用 `python -m pip install pillow` 后几行脚本就能批量压：`Image.open(p).resize(...).save(p, "WEBP", quality=80)`。
+
+### 换微信二维码 / 添加链接
 
 「聊一聊」点开的是三选一面板：**扫码加微信 / 在微信里加我 / 发邮件**。
 

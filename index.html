@@ -78,7 +78,6 @@
       <a href="#about" class="nav__link">关于</a>
       <a href="#skills" class="nav__link">技术栈</a>
       <a href="#work" class="nav__link">项目</a>
-      <a href="#experience" class="nav__link">经历</a>
       <a href="#contact" class="nav__link">联系</a>
       <button class="nav__cta" type="button" data-open-contact aria-haspopup="dialog" aria-controls="contactModal">聊一聊</button>
     </nav>
@@ -433,7 +432,7 @@
           </div>
           <ul class="chips">
             <li class="chip chip--core">C</li><li class="chip chip--core">C++</li>
-            <li class="chip">Python</li><li class="chip">ARM 汇编</li><li class="chip">Rust（学习中）</li>
+            <li class="chip">Python</li><li class="chip">ARM 汇编</li><li class="chip">Rust</li>
           </ul>
         </article>
 
@@ -498,7 +497,7 @@
           </div>
           <ul class="chips">
             <li class="chip chip--core">原理图设计</li>
-            <li class="chip">4 层 PCB</li><li class="chip">器件选型</li><li class="chip">EMC 整改</li><li class="chip">焊接与飞线</li>
+            <li class="chip chip--core">2-8 层 PCB</li><li class="chip">器件选型</li><li class="chip">EMC 整改</li><li class="chip">焊接与飞线</li>
           </ul>
         </article>
       </div>
@@ -511,13 +510,67 @@
       <header class="section__head reveal">
         <p class="eyebrow"><span>03</span> / 项目</p>
         <h2 class="section__title">做过的东西，<br>大多还在现场跑着。</h2>
-        <p class="section__desc">从传感器采集到电机控制，下面这几个都投入过实际使用。</p>
+        <p class="section__desc">从板级硬件到固件，下面几个都是落地过的项目。</p>
       </header>
 
       <div class="projects">
-        <article class="project reveal">
+        <article class="project project--media reveal">
+          <a class="project__media" href="assets/img/projects/h2d-ib-top.webp" target="_blank" rel="noopener" aria-label="查看 H2D_IB 主板正面大图">
+            <img src="assets/img/projects/h2d-ib-top.webp" alt="H2D_IB 音频网络主板正面：48V 输入、音频接口、5G 与 2.4G WiFi 模块" width="1200" height="1442" loading="lazy" decoding="async">
+          </a>
           <div class="project__top">
             <span class="project__index">01</span>
+            <span class="tag tag--hw">整板设计</span>
+          </div>
+          <h3 class="project__title">H2D_IB 音频网络主板</h3>
+          <p class="project__desc">
+            48V 供电的音频 / 网络接口主板。板载 5G 与 2.4G WiFi 模块、音频编解码与 LINE IN / OUT、两路输出、USB、IR 接收和风扇控制；
+            正反面丝印标全了接口与调试点，方便产线装配和现场排查。
+          </p>
+          <dl class="metrics">
+            <div><dt>供电</dt><dd>48 V</dd></div>
+            <div><dt>无线</dt><dd>5G + WiFi</dd></div>
+            <div><dt>接口</dt><dd>USB · 音频 · IR</dd></div>
+          </dl>
+          <ul class="tags">
+            <li>原理图设计</li><li>PCB Layout</li><li>48V 电源</li><li>音频接口</li>
+          </ul>
+          <a class="project__link" href="assets/img/projects/h2d-ib-bottom.webp" target="_blank" rel="noopener">
+            查看背面布局
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+          </a>
+        </article>
+
+        <article class="project project--media reveal">
+          <a class="project__media" href="assets/img/projects/h2-pcb.webp" target="_blank" rel="noopener" aria-label="查看 H2 多层板布线大图">
+            <img src="assets/img/projects/h2-pcb.webp" alt="H2 高密度多层板布线：电源平面、地平面与信号走线" width="685" height="795" loading="lazy" decoding="async">
+          </a>
+          <div class="project__top">
+            <span class="project__index">02</span>
+            <span class="tag tag--hw">PCB Layout</span>
+          </div>
+          <h3 class="project__title">H2 高密度多层板</h3>
+          <p class="project__desc">
+            高密度多层板：大电流回路与敏感小信号分区布置，电源平面分割、地平面完整性和过孔优化优先，
+            走线尽量缩短回流路径，给 EMC 留余量。
+          </p>
+          <dl class="metrics">
+            <div><dt>布局</dt><dd>分区布线</dd></div>
+            <div><dt>电源</dt><dd>平面分割</dd></div>
+            <div><dt>关注</dt><dd>EMC</dd></div>
+          </dl>
+          <ul class="tags">
+            <li>多层板</li><li>电源平面</li><li>EMC</li><li>高密度布线</li>
+          </ul>
+          <a class="project__link" href="assets/img/projects/h2-pcb.webp" target="_blank" rel="noopener">
+            查看大图
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+          </a>
+        </article>
+
+        <article class="project reveal">
+          <div class="project__top">
+            <span class="project__index">03</span>
             <span class="tag tag--live">量产</span>
           </div>
           <h3 class="project__title">工业 CAN 采集网关</h3>
@@ -541,7 +594,7 @@
 
         <article class="project reveal">
           <div class="project__top">
-            <span class="project__index">02</span>
+            <span class="project__index">04</span>
             <span class="tag tag--live">量产</span>
           </div>
           <h3 class="project__title">低功耗 BLE 温振传感器</h3>
@@ -565,7 +618,7 @@
 
         <article class="project reveal">
           <div class="project__top">
-            <span class="project__index">03</span>
+            <span class="project__index">05</span>
             <span class="tag tag--wip">在研</span>
           </div>
           <h3 class="project__title">无刷电机 FOC 控制器</h3>
@@ -589,7 +642,7 @@
 
         <article class="project reveal">
           <div class="project__top">
-            <span class="project__index">04</span>
+            <span class="project__index">06</span>
             <span class="tag tag--oss">开源</span>
           </div>
           <h3 class="project__title">嵌入式小工具箱</h3>
@@ -619,61 +672,6 @@
     </div>
   </section>
 
-  <!-- ======================= 经历 ======================= -->
-  <section class="section section--alt" id="experience">
-    <div class="shell">
-      <header class="section__head reveal">
-        <p class="eyebrow"><span>04</span> / 经历</p>
-        <h2 class="section__title">一条线走下来。</h2>
-        <p class="section__desc">从实验室的第一块开发板，到负责量产固件与产线测试。</p>
-      </header>
-
-      <ol class="timeline">
-        <li class="timeline__item reveal">
-          <p class="timeline__date">2022.07 — 至今</p>
-          <div class="timeline__body">
-            <h3>嵌入式软件工程师 <span>· 工业控制事业部</span></h3>
-            <ul>
-              <li>负责三款控制器固件从零到量产，覆盖 STM32F1 / F4 / G4 平台。</li>
-              <li>主导 FreeRTOS 任务划分与栈使用优化，RAM 占用降低 18%。</li>
-              <li>搭建产线自动化测试工装，单板测试时间从 6 分钟降到 90 秒。</li>
-            </ul>
-          </div>
-          <ul class="timeline__stack">
-            <li>STM32</li><li>FreeRTOS</li><li>产线工装</li>
-          </ul>
-        </li>
-        <li class="timeline__item reveal">
-          <p class="timeline__date">2020.09 — 2022.06</p>
-          <div class="timeline__body">
-            <h3>固件开发工程师 <span>· 物联网终端</span></h3>
-            <ul>
-              <li>完成四款 BLE 传感节点固件，整机功耗优化到 2 µA 级。</li>
-              <li>设计 OTA 升级与失败回滚机制，现场升级成功率 99.6%。</li>
-              <li>负责 EMC 测试期间的问题定位与固件侧整改。</li>
-            </ul>
-          </div>
-          <ul class="timeline__stack">
-            <li>nRF52</li><li>BLE</li><li>OTA</li>
-          </ul>
-        </li>
-        <li class="timeline__item reveal">
-          <p class="timeline__date">2016.09 — 2020.06</p>
-          <div class="timeline__body">
-            <h3>电子信息工程 <span>· 工学学士</span></h3>
-            <ul>
-              <li>电子设计竞赛省一等奖；毕业设计为 STM32 四轴飞控。</li>
-              <li>校电子创新实验室负责人，带过 12 人的新生活动。</li>
-            </ul>
-          </div>
-          <ul class="timeline__stack">
-            <li>电赛</li><li>四轴飞控</li>
-          </ul>
-        </li>
-      </ol>
-    </div>
-  </section>
-
   <!-- ======================= 联系 ======================= -->
   <section class="section" id="contact">
     <div class="shell">
@@ -681,7 +679,7 @@
         <div class="contact__glow" aria-hidden="true"></div>
         <div class="contact__grid">
           <div class="contact__main">
-            <p class="eyebrow"><span>05</span> / 联系</p>
+            <p class="eyebrow"><span>04</span> / 联系</p>
             <h2 class="contact__title">有块板子，<br>想让它跑起来？</h2>
             <p class="contact__lead">
               无论是固件开发、技术咨询，还是想聊聊 RTOS 的调度策略和低功耗的那些坑，都欢迎发邮件给我。通常 24 小时内回复。
