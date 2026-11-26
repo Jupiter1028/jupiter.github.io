@@ -442,7 +442,7 @@
   if (wechatApp) {
     wechatApp.addEventListener('click', function () {
       var mobile = /Android|iPhone|iPad|iPod|HarmonyOS|Mobile/i.test(navigator.userAgent);
-      showToast(mobile ? '正在唤起微信…' : '已尝试唤起微信；没反应就用二维码或邮件');
+      showToast(mobile ? '正在跳转微信…' : '电脑端请扫码添加');
     });
   }
 })();
